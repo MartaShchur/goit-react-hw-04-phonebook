@@ -8,7 +8,6 @@ import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 
 
-
 const phoneContacts = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
   { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
@@ -16,27 +15,20 @@ const phoneContacts = [
   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ]
 
-const LS_CONTACTS_KEY = 'contacts';
-// const App = () => {
-//   const [contacts, setContacts] = useState(() => {
-//     return JSON.parse(window.localStorage.getItem('contacts')) ?? phoneContacts;
-//   });
-//   const [filter, setFilter] = useState('');
-
+const LS_CONTACTS_KEY = 'phoneContacts';
   export const App = () => {
-  const [contacts, setContacts] = useState(() => {
+  const [phoneContacts, setPhoneContacts] = useState(() => {
   return loadLocalStorage(LS_CONTACTS_KEY) ?? [];
   });
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    saveLocalStorage(LS_CONTACTS_KEY, contacts);
-  }, [contacts]);
+    saveLocalStorage(LS_CONTACTS_KEY, phoneContacts);
+  }, [phoneContacts]);
     
 
-
   const addContact = contact => {
-    const isInContacts = contacts.some(
+    const isInContacts = phoneContacts.some(
       ({ name }) =>
         name.toLowerCase().trim() === contact.name.toLowerCase().trim()
     );
@@ -46,8 +38,8 @@ const LS_CONTACTS_KEY = 'contacts';
       return;
     }
 
-    setContacts(prevContacts => [
-      ...prevContacts,
+    setPhoneContacts(prevPhoneContacts => [
+      ...prevPhoneContacts,
       { id: nanoid(), ...contact },
     ]);
   };
@@ -59,14 +51,14 @@ const LS_CONTACTS_KEY = 'contacts';
   const getVisibleContacts = () => {
     const normalizedFilter = filter.toLowerCase();
 
-    return contacts.filter(contact =>
+    return phoneContacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
 
 
   const removeContact = contactId => {
-    setContacts(prevContacts =>
+    setPhoneContacts(prevContacts =>
       prevContacts.filter(contact => contact.id !== contactId)
     );
   };
@@ -80,13 +72,13 @@ const LS_CONTACTS_KEY = 'contacts';
       <ContactForm onSubmit={addContact} />
 
       <SubTitle>Contacts</SubTitle>
-      {contacts.length > 0 ? (
+      {phoneContacts.length > 0 ? (
      
         <Filter value={filter} onChangeFilter={changeFilter} />
       ) : (
         <Wrapper>Your phonebook is empty. Add first contact!</Wrapper>
       )}
-      {contacts.length > 0 && (
+      {phoneContacts.length > 0 && (
   
         <ContactList
           contacts={visibleContacts}
