@@ -14,7 +14,6 @@ const phoneContacts = [
 { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ];
 
-
 export const App = () => {
   const [contacts, setContacts] = useState(() => {
     return loadLocalStorage(phoneContacts) ?? [];
@@ -25,35 +24,6 @@ export const App = () => {
     saveLocalStorage(phoneContacts, contacts);
   }, [contacts]);
 
-
- 
-// const LS_CONTACTS_KEY = 'contacts';
-// export const App = () => {
-//   const [contacts, setContacts] = useState(() => {
-//     return loadLocalStorage(LS_CONTACTS_KEY) ?? phoneContacts; 
-//   });
-
-//   const [filter, setFilter] = useState('');
-//   useEffect(() => {
-//     saveLocalStorage(LS_CONTACTS_KEY, contacts);
-//   }, [contacts]);
-
-
-// const App = () => {
-//   const [contacts, setContacts] = useState(() => {
-//     return JSON.parse(window.localStorage.getItem('contacts')) ?? phoneContacts;
-//   });
-//   const [filter, setFilter] = useState('');
-
-//   export const App = () => {
-//   const [contacts, setContacts] = useState(() => {
-//   return loadLocalStorage(LS_CONTACTS_KEY) ?? [];
-//   });
-//   const [filter, setFilter] = useState('');
-
-//   useEffect(() => {
-//     saveLocalStorage(LS_CONTACTS_KEY, contacts);
-//   }, [contacts]);
     
   const addContact = contact => {
     const isInContacts = contacts.some(
