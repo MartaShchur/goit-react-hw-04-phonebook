@@ -16,6 +16,12 @@ const phoneContacts = [
 ]
 
 const LS_CONTACTS_KEY = 'phoneContacts';
+// const App = () => {
+//   const [contacts, setContacts] = useState(() => {
+//     return JSON.parse(window.localStorage.getItem('contacts')) ?? phoneContacts;
+//   });
+//   const [filter, setFilter] = useState('');
+
   export const App = () => {
   const [phoneContacts, setPhoneContacts] = useState(() => {
   return loadLocalStorage(LS_CONTACTS_KEY) ?? [];
@@ -26,6 +32,7 @@ const LS_CONTACTS_KEY = 'phoneContacts';
     saveLocalStorage(LS_CONTACTS_KEY, phoneContacts);
   }, [phoneContacts]);
     
+
 
   const addContact = contact => {
     const isInContacts = phoneContacts.some(
@@ -38,8 +45,8 @@ const LS_CONTACTS_KEY = 'phoneContacts';
       return;
     }
 
-    setPhoneContacts(prevPhoneContacts => [
-      ...prevPhoneContacts,
+    setPhoneContacts(prevContacts => [
+      ...prevContacts,
       { id: nanoid(), ...contact },
     ]);
   };
