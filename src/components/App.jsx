@@ -17,12 +17,10 @@ const phoneContacts = [
 ]
 
 const LS_CONTACTS_KEY = 'contacts';
-
 // const App = () => {
 //   const [contacts, setContacts] = useState(() => {
 //     return JSON.parse(window.localStorage.getItem('contacts')) ?? phoneContacts;
 //   });
-
 //   const [filter, setFilter] = useState('');
 
   export const App = () => {
